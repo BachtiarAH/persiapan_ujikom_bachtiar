@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "21046988182",
+    "project_id": "fir-auth-c97ff",
+    "storage_bucket": "fir-auth-c97ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21046988182:android:f06c860022b9f2955c21b7",
+        "android_client_info": {
+          "package_name": "com.example.pertemuan11"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21046988182-5lqim5bdbvk5bl20dlup8lfml41g98g9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoQgEGPbhUHorLKiysDCStSkaFtbk6qjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21046988182-5lqim5bdbvk5bl20dlup8lfml41g98g9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
