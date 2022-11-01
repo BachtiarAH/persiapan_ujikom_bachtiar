@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:pertemuan11/acara3/LoginScreen.dart';
+import 'package:pertemuan11/acara3/ProfilScreen.dart';
 import 'package:pertemuan11/persiapan/Lokasi.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,6 +16,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  readDAta() async {
+    await db.collection("ujikom").get().then((event) {
+      for (var doc in event.docs) {
+        print("${doc.id} => ${doc.data()}");
+      }
+    });
+  }
+
+  tesQuery() {
+    db.collection("ujikom").where("id", isEqualTo: 1).get().then(
+          (res) =>
+              print("Successfully completed ${res.docs[0].get("UserName").runtimeType}"),
+          onError: (e) => print("Error completing: $e"),
+        );
+  }
+
   Future<void> _signOut() async {
     await FirebaseAuth.instance.signOut();
   }
@@ -36,8 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.extension)),
+                IconButton(
+                  
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ProfilScreen(),
+                      ));
+                    },
+                    icon: Icon(Icons.person)),
+                
               ],
             ),
             SizedBox(
@@ -57,18 +83,27 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 20,
             ),
-            
             Container(
               child: ElevatedButton(
                   onPressed: () {
-                    _signOut().then((value) => Navigator.of(context)
-                        .pushReplacement(
-                            MaterialPageRoute(builder: (context) => LoginScreen(),)));
+                    _signOut().then((value) =>
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        )));
                   },
                   child: Text("Logout")),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Lokasi(),
+            ElevatedButton(
+              
+                onPressed: () {
+                  readDAta();
+                  tesQuery();
+                },
+                child: Text("data"))
           ],
         ),
       ),

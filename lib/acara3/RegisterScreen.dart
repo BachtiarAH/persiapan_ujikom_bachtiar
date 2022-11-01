@@ -10,21 +10,20 @@ class RegisterScreen extends StatelessWidget {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  
-
   @override
   Widget build(BuildContext context) {
     registerSubmit() async {
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: _emailController.text.toString().trim(),
-          password: _passwordController.text).then((value) => Navigator.of(context).pop());
-    } catch (e) {
-      print(e);
-      SnackBar(content: Text(e.toString()));
+      try {
+        await _firebaseAuth
+            .createUserWithEmailAndPassword(
+                email: _emailController.text.toString().trim(),
+                password: _passwordController.text)
+            .then((value) => Navigator.of(context).pop());
+      } catch (e) {
+        print(e);
+        SnackBar(content: Text(e.toString()));
+      }
     }
-  }
-
 
     return Scaffold(
       body: Padding(
@@ -38,7 +37,7 @@ class RegisterScreen extends StatelessWidget {
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
-                  labelText: "email", border: OutlineInputBorder()),
+                  labelText: "username", border: OutlineInputBorder()),
             ),
             SizedBox(
               height: 20,
@@ -49,12 +48,22 @@ class RegisterScreen extends StatelessWidget {
               decoration: InputDecoration(
                   labelText: "password", border: OutlineInputBorder()),
             ),
+            SizedBox(height: 20,),
+            TextField(
+              decoration: InputDecoration(labelText: "Nama",border: OutlineInputBorder()),
+            ),
+            SizedBox(height: 20,),
+            TextField(
+              decoration: InputDecoration(labelText: "Nomer Telepon",border: OutlineInputBorder()),
+            ),
+            SizedBox(height: 20,),
             ElevatedButton(
-                onPressed: () {
-                  registerSubmit();
-                  
-                },
-                child: Text("Register"))
+              onPressed: () {
+                registerSubmit();
+              },
+              child: Text("Register"),
+            ),
+
           ],
         ),
       ),

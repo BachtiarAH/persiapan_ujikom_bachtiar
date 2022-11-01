@@ -88,6 +88,7 @@ class _LokasiState extends State<Lokasi> {
                 ),
                 SizedBox(width: 20,),
                 FloatingActionButton(
+                  heroTag: "maps",
                   onPressed: () {
                     MapsLauncher.launchCoordinates(
                         this._myPosition.latitude, this._myPosition.longitude);

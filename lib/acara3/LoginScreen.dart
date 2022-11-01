@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(top: 40),
               child: Text(
-                "Latihan Auth",
+                "Ujikom",
                 style: TextStyle(
                     color: Colors.blue,
                     fontWeight: FontWeight.w500,
